@@ -1,7 +1,7 @@
 import sqlite3
 import re
 
-conn = sqlite3.connect('C:\Users\jeff.Jeff\OneDrive\Python for EB\orgdb.sqlite')
+conn = sqlite3.connect('E:\Documents\Python for Everybody\orgdb.sqlite')
 cur = conn.cursor()
 
 cur.execute('''
@@ -11,7 +11,7 @@ cur.execute('''
 CREATE TABLE Counts (org TEXT, count INTEGER)''')
 
 fname = raw_input('Enter file name: ')
-if ( len(fname) < 1 ) : fname = 'C:\Users\jeff.Jeff\OneDrive\Python for EB\mbox.txt'
+if ( len(fname) < 1 ) : fname = 'E:\Documents\Python for Everybody\mbox.txt'
 fh = open(fname)
 for line in fh:
     if not line.startswith('From: ') : continue
