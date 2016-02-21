@@ -23,7 +23,7 @@ CREATE TABLE Course (
 CREATE TABLE Member (
     user_id     INTEGER,
     course_id   INTEGER,
-    role        INTEGER,
+    role        INTERGER,
     PRIMARY KEY (user_id, course_id)
 )
 ''')
@@ -43,8 +43,9 @@ for entry in json_data:
 
     name = entry[0];
     title = entry[1];
+    role = entry[2];
 
-    print name, title
+    print name, title, role
 
     cur.execute('''INSERT OR IGNORE INTO User (name) 
         VALUES ( ? )''', ( name, ) )
@@ -57,7 +58,7 @@ for entry in json_data:
     course_id = cur.fetchone()[0]
 
     cur.execute('''INSERT OR REPLACE INTO Member
-        (user_id, course_id) VALUES ( ?, ? )''', 
-        ( user_id, course_id ) )
-
+        (user_id, course_id, role ) VALUES ( ?, ?, ? )''', 
+        ( user_id, course_id, role ) )
+        
     conn.commit()
